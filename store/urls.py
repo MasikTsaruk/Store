@@ -20,6 +20,7 @@ from products import views
 
 from django.conf.urls.static import static
 from django.conf import settings
+from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,8 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('', views.IndexView.as_view(), name="index"),
     path('orders/', include('orders.urls')),
+    path('api/', include('api.urls')),
+    path('api-token-auth/', obtain_auth_token),
 
 ]
 if settings.DEBUG:

@@ -3,7 +3,6 @@ from .forms import OrderForm
 from .models import Order
 from django.urls import reverse_lazy
 
-# Create your views here.
 
 
 class OrderCreateView(CreateView):
@@ -14,4 +13,6 @@ class OrderCreateView(CreateView):
     def form_valid(self, form):
         form.instance.initiator = self.request.user
         return super(OrderCreateView, self).form_valid(form)
+
+
 

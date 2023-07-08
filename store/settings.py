@@ -11,23 +11,39 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import environ
+import os
+
+env = environ.Env(
+    DEBUG= (bool, False),
+    SECRET_KEY=(str,None),
+    DOMAIN_NAME=(str, 'http://localhost:8000'),
+    REDIS_HOST=(str, None),
+    REDIS_PORT=(str, None),
+    DATABASE_NAME=(str, None),
+    DATABASE_USER=(str, None),
+    DATABASE_PASSWORD=(str, None),
+    DATABASE_HOST=(str, None),
+    DATABASE_PORT=(str, None),
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-821_&sd7!k&2wt98$a_)onl_kky6k0%3m2pa=k-%f^&kixljr+'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
-DOMAIN_NAME = 'http://localhost:8000'
+DOMAIN_NAME = env('DOMAIN_NAME')
 
 # Application definition
 
@@ -49,6 +65,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     'orders',
     'debug_toolbar',
+    'django_extensions',
+    'rest_framework',
+    'api',
+    'rest_framework.authtoken',
 ]
 
 SITE_ID = 1
@@ -91,7 +111,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-WSGI_APPLICATION = 'store.wsgi.application'
+#WSGI_APPLICATION = 'store.wsgi.application'
 
 
 # Database
@@ -100,11 +120,11 @@ WSGI_APPLICATION = 'store.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'rEset237?',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
         
     }
 }
@@ -171,36 +191,17 @@ LOGOUT_REDIRECT_URL = '/'
 
 # sending emails
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-SOCIALACCOUNT_PROVIDERS = {
-    'github': {
-        'SCOPE': [
-            'user'
-        ],
-    }
-}
 
 FIXTURE_DIRS = [BASE_DIR / 'fixtures']
 
-INTERNAL_IPS = [
-    '127.0.0.1',
-    'localhost',
-]
 
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 3,
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication'],
 }
 
-
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
-CELERY_TIMEZONE = "Australia/Tasmania"
-CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30 * 60
+APPEND_SLASH=False

@@ -31,11 +31,10 @@ class EmailVerification(models.Model):
             verification_link
         )
         send_mail(
-            subject=subject,
-            message=message,
-            from_email="from@example.com",
-            recipient_list=[self.user.email],
-            fail_silently=False
+                subject=subject,
+                message=message,
+                from_email="from@example.com",
+                recipient_list=[self.user.email],
         )
 
     def is_expired(self):
