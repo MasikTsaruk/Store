@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3a135c76-6a28-4db0-a957-78fa08f1736d" name="Changes" comment="txt file" />
+    <list default="true" id="3a135c76-6a28-4db0-a957-78fa08f1736d" name="Changes" comment="txt file">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/store/urls.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -280,7 +283,7 @@
       <workItem from="1688762331619" duration="3000" />
       <workItem from="1688832472304" duration="6899000" />
       <workItem from="1688839954744" duration="455000" />
-      <workItem from="1688840692648" duration="306000" />
+      <workItem from="1688840692648" duration="1133000" />
     </task>
     <task id="LOCAL-00001" summary="Remade">
       <created>1688835954942</created>
