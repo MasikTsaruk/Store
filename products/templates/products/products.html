@@ -81,8 +81,13 @@
                             <p class="card-text">{{product.description}}</p>
                         </div>
                         <div class="card-footer text-center">
+                            {% if user.is_authenticated %}
                             <a class="btn btn-outline-success"
                             href = "{% url 'basket_add' product.id %}">Отправить в корзину</a>
+                            {% else %}
+                            <a class="btn btn-outline-success"
+                            href = "{% url 'users:login' %}">Отправить в корзину</a>
+                            {% endif %}
                         </div>
 
 

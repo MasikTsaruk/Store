@@ -11,39 +11,22 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import environ
-import os
-
-env = environ.Env(
-    DEBUG= (bool, False),
-    SECRET_KEY=(str,None),
-    DOMAIN_NAME=(str, 'http://localhost:8000'),
-    REDIS_HOST=(str, None),
-    REDIS_PORT=(str, None),
-    DATABASE_NAME=(str, None),
-    DATABASE_USER=(str, None),
-    DATABASE_PASSWORD=(str, None),
-    DATABASE_HOST=(str, None),
-    DATABASE_PORT=(str, None),
-)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'django-insecure-821_&sd7!k&2wt98$a_)onl_kky6k0%3m2pa=k-%f^&kixljr+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-DOMAIN_NAME = env('DOMAIN_NAME')
+DOMAIN_NAME = 'http://localhost:8000'
 
 # Application definition
 
@@ -120,11 +103,11 @@ AUTHENTICATION_BACKENDS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASSWORD'),
-        'HOST': env('DATABASE_HOST'),
-        'PORT': env('DATABASE_PORT'),
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'rEset237?',
+        'HOST': 'localhost',
+        'PORT': '5432',
         
     }
 }
