@@ -14,8 +14,9 @@ port is 5432.
 | `postgres` | `postgres` | **`rEset237?`**| `5432` |
 
 # To run this app:
+Open directory with Project, then:
 
-create virtual environment
+create virtual environment:
 
 ```bash
   python -m venv venv
